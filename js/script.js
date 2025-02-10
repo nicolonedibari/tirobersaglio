@@ -1,43 +1,83 @@
 let diametro = 400;
 let punti = 0;
-let messaggio = "Punti: 0"; // Messaggio iniziale
+let messaggio = "Punti: 0";
+let clickX = null, clickY = null;
 
 function setup() {
     let canvas = createCanvas(600, 600);
-    canvas.parent("container"); // Posiziona il canvas nel div
+    canvas.parent("container");
     draw();
 }
 
 function draw() {
     background(220);
-    let colors = [[255, 0, 0], [255, 255, 255]]; // Rosso e bianco
-    let step = 40;
+       
+        fill(255, 0, 0); 
+        noStroke();
+        circle(width / 2, height / 2, diametro);
+    
+        fill(255, 255, 255); 
+        noStroke();
+        circle(width / 2, height / 2, diametro - 40);
+    
+        fill(255, 0, 0);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 80);
+    
+        fill(255, 255, 255);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 120);
+    
+        fill(255, 0, 0);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 160);
+    
+        fill(255, 255, 255);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 200);
+    
+        fill(255, 0, 0);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 240);
+    
+        fill(255, 255, 255);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 280);
+    
+        fill(255, 0, 0);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 320);
+    
+        fill(255, 255, 255);
+        noStroke();
+        circle(width / 2, height / 2, diametro - 360);
 
-    for (let i = 0; i < 10; i++) {
-        fill(colors[i % 2]); // Alterna i colori
-        circle(width / 2, height / 2, diametro - i * step);
+    document.querySelector("#risultati").innerHTML = messaggio;
+
+     if (clickX !== null && clickY !== null) {
+        fill(0);
+        noStroke();
+        circle(clickX, clickY, 10);
     }
-
-    // Aggiorna il messaggio a schermo
-    document.querySelector("#risultati").innerText = messaggio;
 }
 
 function mouseClicked() {
-    // Calcola la distanza tra il centro del bersaglio e il punto cliccato
+    
     let d = dist(mouseX, mouseY, width / 2, height / 2);
+    clickX = mouseX;
+    clickY = mouseY;
 
-    // Assegna punti in base alla distanza
-    if (d <= 20) {
+    if (d <= 25) {
         punti = 50;
-    } else if (d <= 60) {
+    } else if (d <= 65) {
         punti = 25;
-    } else if (d <= 100) {
+    } else if (d <= 105) {
         punti = 10;
-    } else if (d <= 140) {
+    } else if (d <= 145) {
         punti = 5;
-    } else if (d <= 180) {
+    } else if (d <= 185) {
         punti = 3;
-    } else if (d <= 220){
+    } else if (d <= 205){
         punti = 1;
     } else {
         punti = 0;
@@ -45,9 +85,8 @@ function mouseClicked() {
         return
     }
 
-    // Aggiorna il messaggio con il punteggio ottenuto
     messaggio = "Punti: " + punti;
     
-    // Ridisegna il bersaglio con il messaggio aggiornato
+    
     draw();
 }
